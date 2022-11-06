@@ -1,0 +1,225 @@
+-- Gui to Lua
+game.StarterGui:SetCore("SendNotification", {
+ Title = "CREDIT AND SCRIPT!";
+ Text = "HACKER_YT FE LUA EXECUTOR SCRIPT!";
+ Duration = 60; })
+-- Version: 3.2
+game.StarterGui:SetCore("SendNotification", {
+ Title = "DISCORD SERVER!";
+ Text = "JOIN MY DISCORD SERVER : ";
+ Duration = 60; })
+
+-- Instances:
+
+local LuaX = Instance.new("ScreenGui")
+local LuaXFrame = Instance.new("Frame")
+local LuaXTitle = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local ScriptBox = Instance.new("TextBox")
+local ExecuteBtn = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local ClearBtn = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local closemain = instance.new("Frame")
+local close = Instance.new("TextButton")
+local openmain = Instance.new("Frame")
+local open = Instance.new("TextButton")
+
+--Properties:
+
+LuaX.Name = "LuaX"
+LuaX.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+LuaX.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+LuaX.ResetOnSpawn = false
+
+LuaXFrame.Name = "LuaXFrame"
+LuaXFrame.Parent = LuaX
+LuaXFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+LuaXFrame.Position = UDim2.new(0.029448621, 0, 0.126801148, 0)
+LuaXFrame.Size = UDim2.new(0, 412, 0, 226)
+
+LuaXTitle.Name = "LuaXTitle"
+LuaXTitle.Parent = LuaXFrame
+LuaXTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LuaXTitle.BackgroundTransparency = 1.000
+LuaXTitle.Position = UDim2.new(0.325242698, 0, 0, 0)
+LuaXTitle.Size = UDim2.new(0, 144, 0, 43)
+LuaXTitle.Font = Enum.Font.Gotham
+LuaXTitle.Text = "REALM CREATOR V1.0"
+LuaXTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+LuaXTitle.TextScaled = true
+LuaXTitle.TextSize = 14.000
+LuaXTitle.TextWrapped = true
+
+UICorner.CornerRadius = UDim.new(0.075000003, 0)
+UICorner.Parent = LuaXFrame
+
+ScriptBox.Name = "ScriptBox"
+ScriptBox.Parent = LuaXFrame
+ScriptBox.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+ScriptBox.Position = UDim2.new(0.0364077687, 0, 0.190265492, 0)
+ScriptBox.Size = UDim2.new(0, 384, 0, 130)
+ScriptBox.ClearTextOnFocus = false
+ScriptBox.Font = Enum.Font.Gotham
+ScriptBox.PlaceholderText = "ENTER SCRIPT HERE!"
+ScriptBox.Text = ""
+ScriptBox.TextColor3 = Color3.fromRGB(0, 255, 0)
+ScriptBox.TextSize = 10.000
+ScriptBox.TextXAlignment = Enum.TextXAlignment.Left
+ScriptBox.TextYAlignment = Enum.TextYAlignment.Top
+
+ExecuteBtn.Name = "ExecuteBtn"
+ExecuteBtn.Parent = LuaXFrame
+ExecuteBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+ExecuteBtn.Position = UDim2.new(0.0631067976, 0, 0.792035401, 0)
+ExecuteBtn.Size = UDim2.new(0, 173, 0, 41)
+ExecuteBtn.Font = Enum.Font.Gotham
+ExecuteBtn.Text = "EXECUTE!"
+ExecuteBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ExecuteBtn.TextSize = 14.000
+
+UICorner_2.CornerRadius = UDim.new(0.5, 0)
+UICorner_2.Parent = ExecuteBtn
+
+ClearBtn.Name = "ClearBtn"
+ClearBtn.Parent = LuaXFrame
+ClearBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+ClearBtn.Position = UDim2.new(0.497572839, 0, 0.792035401, 0)
+ClearBtn.Size = UDim2.new(0, 173, 0, 41)
+ClearBtn.Font = Enum.Font.Gotham
+ClearBtn.Text = "CLEAR!"
+ClearBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ClearBtn.TextSize = 14.000
+
+UICorner_3.CornerRadius = UDim.new(0.5, 0)
+UICorner_3.Parent = ClearBtn
+
+closemain.Name = "closemain"
+closemain.Parent = ScreenGui
+closemain.BackgroundColor3 = Color3.new(1, 1, 1)
+closemain.Position = UDim2.new(.001, 0, .85, 0)
+closemain.Size = UDim2.new(0, 100, 0, 28)
+closemain.Active = true
+closemain.Draggable = true
+
+close.Name = "close"
+close.Parent = openmain
+close.BackgroundColor3 = Color3.new(1, 1, 1)
+close.Size = UDim2.new(0, 100, 0, 28)
+close.Font = Enum.Font.GothamBold
+close.Text = "CLOSE GUI"
+close.TextColor3 = Color3.new(0, 0, 0)
+close.TextSize = 18
+close.TextWrapped = true
+close.MouseButton1Down:connect(function()
+closemain.Visible = false
+LuaXFrame.Visible = true
+end)
+
+openmain.Name = "openmain"
+openmain.Parent = ScreenGui
+openmain.BackgroundColor3 = Color3.new(1, 1, 1)
+openmain.Position = UDim2.new(.001, 0, .79, 0)
+openmain.Size = UDim2.new(0, 100, 0, 28)
+openmain.Active = true
+openmain.Draggable = true
+
+open.Name = "open"
+open.Parent = openmain
+open.BackgroundColor3 = Color3.new(1, 1, 1)
+open.Size = UDim2.new(0, 100, 0, 28)
+open.Font = Enum.Font.GothamBold
+open.Text = "OPEN GUI"
+open.TextColor3 = Color3.new(0, 0, 0)
+open.TextSize = 18
+open.TextWrapped = true
+open.MouseButton1Down:connect(function()
+openmain.Visible = false
+LuaXFrame.Visible = true
+end)
+
+-- Scripts:
+
+local function QLOK_fake_script() -- ExecuteBtn.LocalScript 
+	local script = Instance.new('LocalScript', ExecuteBtn)
+
+game.StarterGui:SetCore("SendNotification", {
+ Title = "MESSAGE!";
+ Text = "PLEASE WAIT IN 1.0!";
+ Duration = 60; })
+wait(1.0)
+game.StarterGui:SetCore("SendNotification", {
+ Title = "SCRIPT!";
+ Text = "YOUR : " .. ScriptBox.Text .. " GOT EXECUTED!";
+ Duration = 60; })
+
+	-- Variables
+	Source = script.Parent.Parent.ScriptBox
+	-- Main Code
+	script.Parent.MouseButton1Click:Connect(function()
+       game.StarterGui:SetCore("SendNotification", {
+       Title = "MESSAGE!";
+       Text = "PLEASE WAIT IN 1.0!";
+       Duration = 60; })
+       wait(1.0)
+       game.StarterGui:SetCore("SendNotification", {
+       Title = "SCRIPT!";
+       Text = "YOUR : " .. ScriptBox.Text .. " GOT EXECUTED!";
+       Duration = 60; })
+	    loadstring(Source.Text)()
+	end)
+end
+coroutine.wrap(QLOK_fake_script)()
+local function WATA_fake_script() -- ClearBtn.LocalScript 
+	local script = Instance.new('LocalScript', ClearBtn)
+
+	-- Variables
+	Source = script.Parent.Parent.ScriptBox
+	-- Main Code
+	script.Parent.MouseButton1Click:Connect(function()
+	    Source.Text = ""
+	end)
+end
+coroutine.wrap(WATA_fake_script)()
+local function HFGEL_fake_script() -- LuaXFrame.Dragify 
+	local script = Instance.new('LocalScript', LuaXFrame)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+		dragToggle = nil
+		dragSpeed = 0.15
+		dragInput = nil
+		dragStart = nil
+		dragPos = nil
+		function updateInput(input)
+			Delta = input.Position - dragStart
+			Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+			game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.15), {Position = Position}):Play()
+		end
+		Frame.InputBegan:Connect(function(input)
+			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+				dragToggle = true
+				dragStart = input.Position
+				startPos = Frame.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragToggle = false
+					end
+				end)
+			end
+		end)
+		Frame.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if input == dragInput and dragToggle then
+				updateInput(input)
+			end
+		end)
+	end
+	dragify(script.Parent)
+	
+end
+coroutine.wrap(HFGEL_fake_script)()
