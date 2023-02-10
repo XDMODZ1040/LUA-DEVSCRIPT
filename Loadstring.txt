@@ -1,0 +1,242 @@
+-- Made By 👾HACKER👾_YT
+local autofarm = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local title = Instance.new("TextLabel")
+local rebithmainon = Instance.new("Frame")
+local rebirthon = Instance.new("TextButton")
+local orbmainon = Instance.new("Frame")
+local orbon = Instance.new("TextButton")
+local gemmainon = Instance.new("Frame")
+local gemon = Instance.new("TextButton")
+local hoopmainon = Instance.new("Frame")
+local hoopon = Instance.new("TextButton")
+local credits = Instance.new("TextLabel")
+--Properties:
+autofarm.Name = "autofarm"
+autofarm.Parent = game.CoreGui
+
+main.Name = "main"
+main.Parent = autofarm
+main.BackgroundColor3 = Color3.new(1, 1, 2)
+main.Position = UDim2.new(0.141270816, 0, 0.617936134, 0)
+main.Size = UDim2.new(0, 394, 0, 256)
+main.Active = true
+main.Draggable = true
+
+title.Name = "title"
+title.Parent = main
+title.BackgroundColor3 = Color3.new(0, 0, 0)
+title.Size = UDim2.new(0, 394, 0, 40)
+title.Font = Enum.Font.GothamBold
+title.Text = "DEV_INFINITE EXE GUI V1.5"
+title.TextColor3 = Color3.new(1, 1, 2)
+title.TextSize = 14
+
+rebithmainon.Name = "rebithmainon"
+rebithmainon.Parent = main
+rebithmainon.BackgroundColor3 = Color3.new(1, 1, 1)
+rebithmainon.Position = UDim2.new(0.0710659027, 0, 0.65234375, 0)
+rebithmainon.Size = UDim2.new(0, 338, 0, 39)
+rebithmainon.Visible = false
+
+rebirthon.Name = "rebirthon"
+rebirthon.Parent = rebithmainon
+rebirthon.BackgroundColor3 = Color3.new(0, 1, 0)
+rebirthon.Size = UDim2.new(0, 338, 0, 39)
+rebirthon.Font = Enum.Font.GothamBlack
+rebirthon.Text = "ℹ️ UPDATE INFO ℹ️"
+rebirthon.TextColor3 = Color3.new(0, 0, 0)
+rebirthon.TextSize = 14
+rebirthon.MouseButton1Down:connect(function()
+setclipboard('https://raw.githubusercontent.com/XDMODZ1040/LUA-DEVSCRIPT/main/Main.txt/Executor/READ%20SCRIPT%20FILED')
+end)
+
+orbmainon.Name = "orbmainon"
+orbmainon.Parent = main
+orbmainon.BackgroundColor3 = Color3.new(1, 1, 1)
+orbmainon.Position = UDim2.new(0.667512536, 0, 0.25, 0)
+orbmainon.Size = UDim2.new(0, 109, 0, 50)
+orbmainon.Visible = false
+
+orbon.Name = "orbon"
+orbon.Parent = orbmainon
+orbon.BackgroundColor3 = Color3.new(0, 1, 0)
+orbon.Size = UDim2.new(0, 109, 0, 50)
+orbon.Font = Enum.Font.GothamBlack
+orbon.Text = "EXE RAW"
+orbon.TextColor3 = Color3.new(0, 0, 0)
+orbon.TextSize = 12
+orbon.MouseButton1Down:connect(function()
+wait(1)
+-- Objects
+
+local ExampleSS = Instance.new("ScreenGui")
+local skid = Instance.new("Frame")
+local source = Instance.new("TextBox")
+local execute = Instance.new("TextButton")
+local clear = Instance.new("TextButton")
+
+-- Properties
+
+ExampleSS.Name = "ExampleSS"
+ExampleSS.Parent = game.CoreGui
+ExampleSS.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+skid.Name = "skid"
+skid.Parent = ExampleSS
+skid.Active = true
+skid.BackgroundColor3 = Color3.new(0, 0, 0)
+skid.Position = UDim2.new(0.298701286, 0, 0.184060723, 0)
+skid.Size = UDim2.new(0, 430, 0, 288)
+skid.Draggable = true
+
+source.Name = "source"
+source.Parent = skid
+source.BackgroundColor3 = Color3.new(1, 1, 1)
+source.Position = UDim2.new(0.0209302325, 0, 0.020833334, 0)
+source.Size = UDim2.new(0, 413, 0, 225)
+source.Font = Enum.Font.SourceSans
+source.Text = "PUT RAW LINK HERE!"
+source.TextColor3 = Color3.new(0, 0, 0)
+source.TextSize = 20
+
+execute.Name = "execute"
+execute.Parent = skid
+execute.BackgroundColor3 = Color3.new(1, 1, 1)
+execute.Position = UDim2.new(0, 0, 0.826388896, 0)
+execute.Size = UDim2.new(0, 200, 0, 50)
+execute.Font = Enum.Font.SourceSans
+execute.Text = "execute"
+execute.TextColor3 = Color3.new(0, 0, 0)
+execute.TextScaled = true
+execute.TextSize = 14
+execute.TextWrapped = true
+
+clear.Name = "clear"
+clear.Parent = skid
+clear.BackgroundColor3 = Color3.new(1, 1, 1)
+clear.Position = UDim2.new(0.534883738, 0, 0.826388896, 0)
+clear.Size = UDim2.new(0, 200, 0, 50)
+clear.Font = Enum.Font.SourceSans
+clear.Text = "clear"
+clear.TextColor3 = Color3.new(0, 0, 0)
+clear.TextScaled = true
+clear.TextSize = 14
+clear.TextWrapped = true
+
+execute.MouseButton1Click:connect(function()
+	loadstring(game:HttpGet("" ...source.text... ""))()
+end)
+end)
+
+gemmainon.Name = "gemmainon"
+gemmainon.Parent = main
+gemmainon.BackgroundColor3 = Color3.new(1, 1, 1)
+gemmainon.Position = UDim2.new(0.357867986, 0, 0.25, 0)
+gemmainon.Size = UDim2.new(0, 109, 0, 50)
+gemmainon.Visible = false
+
+gemon.Name = "gemon"
+gemon.Parent = gemmainon
+gemon.BackgroundColor3 = Color3.new(0, 1, 0)
+gemon.Position = UDim2.new(0.00917410851, 0, 0, 0)
+gemon.Size = UDim2.new(0, 109, 0, 50)
+gemon.Font = Enum.Font.GothamBlack
+gemon.Text = "EXIT"
+gemon.TextColor3 = Color3.new(0, 0, 0)
+gemon.TextSize = 14
+gemon.MouseButton1Down:connect(function()
+wait(1)
+       Main:Destroy()
+end)
+
+hoopmainon.Name = "hoopmainon"
+hoopmainon.Parent = main
+hoopmainon.BackgroundColor3 = Color3.new(1, 1, 1)
+hoopmainon.Position = UDim2.new(0.0482233465, 0, 0.24609375, 0)
+hoopmainon.Size = UDim2.new(0, 109, 0, 50)
+hoopmainon.Visible = false
+
+hoopon.Name = "hoopon"
+hoopon.Parent = hoopmainon
+hoopon.BackgroundColor3 = Color3.new(0, 1, 0)
+hoopon.Position = UDim2.new(0, 0, 0.0199999809, 0)
+hoopon.Size = UDim2.new(0, 109, 0, 50)
+hoopon.Font = Enum.Font.GothamBlack
+hoopon.Text = "EXE SS"
+hoopon.TextColor3 = Color3.new(0, 0, 0)
+hoopon.TextSize = 12
+hoopon.MouseButton1Down:connect(function()
+wait(1)
+-- Objects
+
+local ExampleSS = Instance.new("ScreenGui")
+local skid = Instance.new("Frame")
+local source = Instance.new("TextBox")
+local execute = Instance.new("TextButton")
+local clear = Instance.new("TextButton")
+
+-- Properties
+
+ExampleSS.Name = "ExampleSS"
+ExampleSS.Parent = game.CoreGui
+ExampleSS.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+skid.Name = "skid"
+skid.Parent = ExampleSS
+skid.Active = true
+skid.BackgroundColor3 = Color3.new(0, 0, 0)
+skid.Position = UDim2.new(0.298701286, 0, 0.184060723, 0)
+skid.Size = UDim2.new(0, 430, 0, 288)
+skid.Draggable = true
+
+source.Name = "source"
+source.Parent = skid
+source.BackgroundColor3 = Color3.new(1, 1, 1)
+source.Position = UDim2.new(0.0209302325, 0, 0.020833334, 0)
+source.Size = UDim2.new(0, 413, 0, 225)
+source.Font = Enum.Font.SourceSans
+source.Text = "PUT SERVERSIDE HERE!"
+source.TextColor3 = Color3.new(0, 0, 0)
+source.TextSize = 20
+
+execute.Name = "execute"
+execute.Parent = skid
+execute.BackgroundColor3 = Color3.new(1, 1, 1)
+execute.Position = UDim2.new(0, 0, 0.826388896, 0)
+execute.Size = UDim2.new(0, 200, 0, 50)
+execute.Font = Enum.Font.SourceSans
+execute.Text = "execute"
+execute.TextColor3 = Color3.new(0, 0, 0)
+execute.TextScaled = true
+execute.TextSize = 14
+execute.TextWrapped = true
+
+clear.Name = "clear"
+clear.Parent = skid
+clear.BackgroundColor3 = Color3.new(1, 1, 1)
+clear.Position = UDim2.new(0.534883738, 0, 0.826388896, 0)
+clear.Size = UDim2.new(0, 200, 0, 50)
+clear.Font = Enum.Font.SourceSans
+clear.Text = "clear"
+clear.TextColor3 = Color3.new(0, 0, 0)
+clear.TextScaled = true
+clear.TextSize = 14
+clear.TextWrapped = true
+
+execute.MouseButton1Click:connect(function()
+	game.ReplicatedStorage.RemoteEvent:FireServer(source.Text)
+end)
+end)
+
+credits.Name = "credits"
+credits.Parent = main
+credits.BackgroundColor3 = Color3.new(0, 0, 0)
+credits.Position = UDim2.new(0, 0, 0.83984375, 0)
+credits.Size = UDim2.new(0, 393, 0, 41)
+credits.Font = Enum.Font.GothamBlack
+credits.Text = "👾MADE BY DEVBLOXY👾"
+credits.TextColor3 = Color3.new(2, 5, 3)
+credits.TextSize = 14
+end
+end
