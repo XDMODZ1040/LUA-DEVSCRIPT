@@ -139,7 +139,7 @@ name_6.TextStrokeTransparency = 9.000
 name_6.TextWrapped = true
 name_6.TextXAlignment = Enum.TextXAlignment.Left
 name_6.MouseButton1Down:connect(function()
-setclipboard('https://raw.githubusercontent.com/XDMODZ1040/LUA-DEVSCRIPT/main/KEY-SYSTEM/XORENIUM%20X%20HUB/PUBLIC/MAIN.lua')
+setclipboard('https://raw.githubusercontent.com/XDMODZ1040/LUA-DEVSCRIPT/main/KEY-SYSTEM/XORENIUM%20X%20HUB/PUBLIC/MAIN.txt')
 end)
 
 UICorner_2.Parent = KeySystem
