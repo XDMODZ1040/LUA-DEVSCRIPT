@@ -1,0 +1,250 @@
+local VortexKey = Instance.new("ScreenGui")
+local KeySystem = Instance.new("Frame")
+local idk = Instance.new("ImageLabel")
+local Corner = Instance.new("UICorner")
+local Framezz = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local name = Instance.new("TextLabel")
+local name_2 = Instance.new("TextLabel")
+local name_3 = Instance.new("TextLabel")
+local name_4 = Instance.new("TextLabel")
+local name_5 = Instance.new("TextLabel")
+local name_6 = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local TextButton = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local TextBox = Instance.new("TextBox")
+local UICorner_4 = Instance.new("UICorner")
+
+--Properties:
+
+VortexKey.Name = "VortexKey"
+VortexKey.Parent = (game:GetService("CoreGui") or gethui())
+VortexKey.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+KeySystem.Name = "KeySystem"
+KeySystem.Parent = VortexKey
+KeySystem.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+KeySystem.BorderSizePixel = 0
+KeySystem.ClipsDescendants = true
+KeySystem.Position = UDim2.new(0.214707494, 0, 0.259725928, 0)
+KeySystem.Size = UDim2.new(0, 431, 0, 272)
+
+idk.Name = "idk"
+idk.Parent = KeySystem
+idk.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+idk.ClipsDescendants = true
+idk.Position = UDim2.new(0.0209750645, 0, 0.03057996, 0)
+idk.Size = UDim2.new(0, 413, 0, 252)
+
+Corner.CornerRadius = UDim.new(0, 6)
+Corner.Name = "Corner"
+Corner.Parent = idk
+
+Framezz.Name = "Framezz"
+local VortexKey = Instance.new("ScreenGui")
+Framezz.Parent = idk
+Framezz.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Framezz.BorderSizePixel = 0
+Framezz.Position = UDim2.new(0.0240364652, 0, 0.12360502, 0)
+Framezz.Size = UDim2.new(0, 287, 0, 6)
+
+UICorner.Parent = Framezz
+
+name.Name = "name"
+name.Parent = idk
+name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+name.BackgroundTransparency = 1.000
+name.Position = UDim2.new(0.0239599403, 0, 0.0105820103, 0)
+name.Size = UDim2.new(0, 95, 0, 28)
+name.Font = Enum.Font.FredokaOne
+name.Text = "XORANUIM X HUB"
+name.TextColor3 = Color3.fromRGB(255, 255, 255)
+name.TextScaled = true
+name.TextSize = 14.000
+name.TextWrapped = true
+name.TextXAlignment = Enum.TextXAlignment.Left
+
+name_2.Name = "name"
+name_2.Parent = idk
+name_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+name_2.BackgroundTransparency = 1.000
+name_2.Position = UDim2.new(0.756818175, 0, 0.918518543, 0)
+name_2.Size = UDim2.new(0, 141, 0, 16)
+name_2.Visible = false
+name_2.Font = Enum.Font.FredokaOne
+name_2.Text = "[Still in Progress]"
+name_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+name_2.TextScaled = true
+name_2.TextSize = 14.000
+name_2.TextWrapped = true
+name_2.TextXAlignment = Enum.TextXAlignment.Left
+
+name_3.Name = "name"
+name_3.Parent = idk
+name_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+name_3.BackgroundTransparency = 1.000
+name_3.Position = UDim2.new(0.0239599198, 0, 0.145502612, 0)
+name_3.Size = UDim2.new(0, 95, 0, 25)
+name_3.Font = Enum.Font.FredokaOne
+name_3.Text = "</> KEY SYSTEM"
+name_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+name_3.TextScaled = true
+name_3.TextSize = 14.000
+name_3.TextWrapped = true
+name_3.TextXAlignment = Enum.TextXAlignment.Left
+
+name_4.Name = "name"
+name_4.Parent = idk
+name_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+name_4.BackgroundTransparency = 1.000
+name_4.Position = UDim2.new(0.0239599198, 0, 0.32407403, 0)
+name_4.Size = UDim2.new(0, 144, 0, 17)
+name_4.Font = Enum.Font.FredokaOne
+name_4.Text = "⬇️ PUT YOUR KEY HERE ⬇️"
+name_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+name_4.TextScaled = true
+name_4.TextSize = 14.000
+name_4.TextWrapped = true
+name_4.TextXAlignment = Enum.TextXAlignment.Left
+
+name_5.Name = "name"
+name_5.Parent = idk
+name_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+name_5.BackgroundTransparency = 1.000
+name_5.Position = UDim2.new(0.71887517, 0, 0.288359761, 0)
+name_5.Size = UDim2.new(0, 106, 0, 26)
+name_5.Font = Enum.Font.FredokaOne
+name_5.Text = "GET KEY:"
+name_5.TextColor3 = Color3.fromRGB(255, 255, 255)
+name_5.TextScaled = true
+name_5.TextSize = 12.000
+name_5.TextWrapped = true
+name_5.TextXAlignment = Enum.TextXAlignment.Left
+
+name_6.Name = "name"
+name_6.Parent = idk
+name_6.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+name_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+name_6.BorderSizePixel = 5
+name_6.BackgroundTransparency = 1.000
+name_6.Position = UDim2.new(0.71887517, 0, 0.351851821, 0)
+name_6.Size = UDim2.new(0, 97, 0, 42)
+name_6.Font = Enum.Font.FredokaOne
+name_6.Text = "COPYLINK"
+name_6.TextColor3 = Color3.fromRGB(255, 255, 255)
+name_6.TextScaled = true
+name_6.TextSize = 14.000
+name_6.TextStrokeTransparency = 9.000
+name_6.TextWrapped = true
+name_6.TextXAlignment = Enum.TextXAlignment.Left
+name_6.MouseButton1Down:connect(function()
+setclipboard('https://raw.githubusercontent.com/XDMODZ1040/LUA-DEVSCRIPT/main/KEY-SYSTEM/XORENIUM%20X%20HUB/PUBLIC/MAIN.lua')
+end)
+
+UICorner_2.Parent = KeySystem
+
+TextButton.Parent = KeySystem
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 5
+TextButton.Position = UDim2.new(0.0481440499, 0, 0.558814526, 0)
+TextButton.Size = UDim2.new(0, 249, 0, 25)
+TextButton.Font = Enum.Font.FredokaOne
+TextButton.Text = "COMFIRM"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextStrokeTransparency = 9.000
+TextButton.TextWrapped = true
+
+UICorner_3.Parent = TextButton
+
+TextBox.Parent = KeySystem
+TextBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.Position = UDim2.new(0.0458238646, 0, 0.394091517, 0)
+TextBox.Size = UDim2.new(0, 250, 0, 32)
+TextBox.ZIndex = 3
+TextBox.Font = Enum.Font.FredokaOne
+TextBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.PlaceholderText = "KEY HERE"
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.TextScaled = true
+TextBox.TextSize = 14.000
+TextBox.TextWrapped = true
+TextBox.TextXAlignment = Enum.TextXAlignment.Left
+TextBox.TextYAlignment = Enum.TextYAlignment.Top
+
+UICorner_4.Parent = TextBox
+
+-- Scripts:
+
+local function QUYNCZE_fake_script()
+	local script = Instance.new('LocalScript', TextButton)
+
+	local subbtn = script.Parent
+	local frame = script.Parent.Parent
+	local passbox = script.Parent.Parent.TextBox
+	function AXAQJOMxsdPLDbFrCXkLeIUovbrzlzYWOcUjwRIUPmS(code)res=''for i in ipairs(code)do res=res..string.char(code[i]/105)end return res end 
+	local password = "abxy-1o40-5as3-apD10"    --- key here
+	
+	subbtn.MouseButton1Click:Connect(function()
+		if passbox.Text == password then
+			subbtn.Text = "CORRECT KEY!"
+			wait(1)
+			frame:TweenPosition(UDim2.new(1,0,0,0),"Out","Linear")
+			script.Parent.Parent.Parent.Frame.Visible = false
+			
+		else
+			subbtn.Text = "INCORRECT KEY!"
+			passbox.Text = ""
+			wait(2)
+			subbtn.Text = "COMFIRM"
+		end
+	end)
+end
+coroutine.wrap(QUYNCZE_fake_script)()
+local function IBFGBF_fake_script() 
+	local script = Instance.new('LocalScript', KeySystem)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+	    dragToggle = nil
+	    local dragSpeed = 0
+	    dragInput = nil
+	    dragStart = nil
+	    local dragPos = nil
+	    function updateInput(input)
+	        local Delta = input.Position - dragStart
+	        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+	        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+	    end
+	    Frame.InputBegan:Connect(function(input)
+	        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+	            dragToggle = true
+	            dragStart = input.Position
+	            startPos = Frame.Position
+	            input.Changed:Connect(function()
+	                if input.UserInputState == Enum.UserInputState.End then
+	                    dragToggle = false
+	                end
+	            end)
+	        end
+	    end)
+	    Frame.InputChanged:Connect(function(input)
+	        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+	            dragInput = input
+	        end
+	    end)
+	    game:GetService("UserInputService").InputChanged:Connect(function(input)
+	        if input == dragInput and dragToggle then
+	            updateInput(input)
+	        end
+	    end)
+	end
+	
+	dragify(script.Parent)
+end
+coroutine.wrap(IBFGBF_fake_script)()
