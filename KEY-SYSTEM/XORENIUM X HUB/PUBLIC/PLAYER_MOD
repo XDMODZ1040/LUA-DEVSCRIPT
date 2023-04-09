@@ -1,0 +1,693 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ShiftlockStarterGui = Instance.new("ScreenGui")
+local ImageButton = Instance.new("ImageButton")
+
+--Properties:
+
+ShiftlockStarterGui.Name = "Shiftlock (StarterGui)"
+ShiftlockStarterGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ShiftlockStarterGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ImageButton.Parent = ShiftlockStarterGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageButton.BackgroundTransparency = 1.000
+ImageButton.Position = UDim2.new(0.921914339, 0, 0.552375436, 0)
+ImageButton.Size = UDim2.new(0.0636147112, 0, 0.0661305636, 0)
+ImageButton.SizeConstraint = Enum.SizeConstraint.RelativeXX
+ImageButton.Image = "http://www.roblox.com/asset/?id=182223762"
+
+-- Scripts:
+
+local function TLQOYN_fake_script() -- ImageButton.ShiftGUI 
+	local script = Instance.new('LocalScript', ImageButton)
+
+	local MobileCameraFramework = {}
+	local players = game:GetService("Players")
+	local runservice = game:GetService("RunService")
+	local CAS = game:GetService("ContextActionService")
+	local player = players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	local root = character:WaitForChild("HumanoidRootPart")
+	local humanoid = character.Humanoid
+	local camera = workspace.CurrentCamera
+	local button = script.Parent
+	
+	--Visiblity
+	uis = game:GetService("UserInputService")
+	ismobile = uis.TouchEnabled
+	button.Visible = ismobile
+	
+	local states = {
+		OFF = "rbxasset://textures/ui/mouseLock_off@2x.png",
+		ON = "rbxasset://textures/ui/mouseLock_on@2x.png"
+	}
+	local MAX_LENGTH = 900000
+	local active = false
+	local ENABLED_OFFSET = CFrame.new(1.7, 0, 0)
+	local DISABLED_OFFSET = CFrame.new(-1.7, 0, 0)
+	local function UpdateImage(STATE)
+		button.Image = states[STATE]
+	end
+	local function UpdateAutoRotate(BOOL)
+		humanoid.AutoRotate = BOOL
+	end
+	local function GetUpdatedCameraCFrame(ROOT, CAMERA)
+		return CFrame.new(root.Position, Vector3.new(CAMERA.CFrame.LookVector.X * MAX_LENGTH, root.Position.Y, CAMERA.CFrame.LookVector.Z * MAX_LENGTH))
+	end
+	local function EnableShiftlock()
+		UpdateAutoRotate(false)
+		UpdateImage("ON")
+		root.CFrame = GetUpdatedCameraCFrame(root, camera)
+		camera.CFrame = camera.CFrame * ENABLED_OFFSET
+	end
+	local function DisableShiftlock()
+		UpdateAutoRotate(true)
+		UpdateImage("OFF")
+		camera.CFrame = camera.CFrame * DISABLED_OFFSET
+		pcall(function()
+			active:Disconnect()
+			active = nil
+		end)
+	end
+	UpdateImage("OFF")
+	active = false
+	function ShiftLock()
+		if not active then
+			active = runservice.RenderStepped:Connect(function()
+				EnableShiftlock()
+			end)
+		else
+			DisableShiftlock()
+		end
+	end
+	local ShiftLockButton = CAS:BindAction("ShiftLOCK", ShiftLock, false, "On")
+	CAS:SetPosition("ShiftLOCK", UDim2.new(0.8, 0, 0.8, 0))
+	button.MouseButton1Click:Connect(function()
+		if not active then
+			active = runservice.RenderStepped:Connect(function()
+				EnableShiftlock()
+			end)
+		else
+			DisableShiftlock()
+		end
+	end)
+	return MobileCameraFramework
+	
+end
+coroutine.wrap(TLQOYN_fake_script)()
+local function OMQRQRC_fake_script() -- ShiftlockStarterGui.LocalScript 
+	local script = Instance.new('LocalScript', ShiftlockStarterGui)
+
+	local Players = game:GetService("Players")
+	local UserInputService = game:GetService("UserInputService")
+	local Settings = UserSettings()
+	local GameSettings = Settings.GameSettings
+	local ShiftLockController = {}
+	while not Players.LocalPlayer do
+		wait()
+	end
+	local LocalPlayer = Players.LocalPlayer
+	local Mouse = LocalPlayer:GetMouse()
+	local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+	local ScreenGui, ShiftLockIcon, InputCn
+	local IsShiftLockMode = true
+	local IsShiftLocked = true
+	local IsActionBound = false
+	local IsInFirstPerson = false
+	ShiftLockController.OnShiftLockToggled = Instance.new("BindableEvent")
+	local function isShiftLockMode()
+		return LocalPlayer.DevEnableMouseLock and GameSettings.ControlMode == Enum.ControlMode.MouseLockSwitch and LocalPlayer.DevComputerMovementMode ~= Enum.DevComputerMovementMode.ClickToMove and GameSettings.ComputerMovementMode ~= Enum.ComputerMovementMode.ClickToMove and LocalPlayer.DevComputerMovementMode ~= Enum.DevComputerMovementMode.Scriptable
+	end
+	if not UserInputService.TouchEnabled then
+		IsShiftLockMode = isShiftLockMode()
+	end
+	local function onShiftLockToggled()
+		IsShiftLocked = not IsShiftLocked
+		ShiftLockController.OnShiftLockToggled:Fire()
+	end
+	local initialize = function()
+		print("enabled")
+	end
+	function ShiftLockController:IsShiftLocked()
+		return IsShiftLockMode and IsShiftLocked
+	end
+	function ShiftLockController:SetIsInFirstPerson(isInFirstPerson)
+		IsInFirstPerson = isInFirstPerson
+	end
+	local function mouseLockSwitchFunc(actionName, inputState, inputObject)
+		if IsShiftLockMode then
+			onShiftLockToggled()
+		end
+	end
+	local function disableShiftLock()
+		if ScreenGui then
+			ScreenGui.Parent = nil
+		end
+		IsShiftLockMode = false
+		Mouse.Icon = ""
+		if InputCn then
+			InputCn:disconnect()
+			InputCn = nil
+		end
+		IsActionBound = false
+		ShiftLockController.OnShiftLockToggled:Fire()
+	end
+	local onShiftInputBegan = function(inputObject, isProcessed)
+		if isProcessed then
+			return
+		end
+		if inputObject.UserInputType ~= Enum.UserInputType.Keyboard or inputObject.KeyCode == Enum.KeyCode.LeftShift or inputObject.KeyCode == Enum.KeyCode.RightShift then
+		end
+	end
+	local function enableShiftLock()
+		IsShiftLockMode = isShiftLockMode()
+		if IsShiftLockMode then
+			if ScreenGui then
+				ScreenGui.Parent = PlayerGui
+			end
+			if IsShiftLocked then
+				ShiftLockController.OnShiftLockToggled:Fire()
+			end
+			if not IsActionBound then
+				InputCn = UserInputService.InputBegan:connect(onShiftInputBegan)
+				IsActionBound = true
+			end
+		end
+	end
+	GameSettings.Changed:connect(function(property)
+		if property == "ControlMode" then
+			if GameSettings.ControlMode == Enum.ControlMode.MouseLockSwitch then
+				enableShiftLock()
+			else
+				disableShiftLock()
+			end
+		elseif property == "ComputerMovementMode" then
+			if GameSettings.ComputerMovementMode == Enum.ComputerMovementMode.ClickToMove then
+				disableShiftLock()
+			else
+				enableShiftLock()
+			end
+		end
+	end)
+	LocalPlayer.Changed:connect(function(property)
+		if property == "DevEnableMouseLock" then
+			if LocalPlayer.DevEnableMouseLock then
+				enableShiftLock()
+			else
+				disableShiftLock()
+			end
+		elseif property == "DevComputerMovementMode" then
+			if LocalPlayer.DevComputerMovementMode == Enum.DevComputerMovementMode.ClickToMove or LocalPlayer.DevComputerMovementMode == Enum.DevComputerMovementMode.Scriptable then
+				disableShiftLock()
+			else
+				enableShiftLock()
+			end
+		end
+	end)
+	LocalPlayer.CharacterAdded:connect(function(character)
+		if not UserInputService.TouchEnabled then
+			initialize()
+		end
+	end)
+	if not UserInputService.TouchEnabled then
+		initialize()
+		if isShiftLockMode() then
+			InputCn = UserInputService.InputBegan:connect(onShiftInputBegan)
+			IsActionBound = true
+		end
+	end
+	enableShiftLock()
+	return ShiftLockController
+	
+end
+coroutine.wrap(OMQRQRC_fake_script)()
+wait(0)
+local CoreGui = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+
+getgenv().Walkspeed = 16
+getgenv().Jumppower = 50
+
+--// UI
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/UI-Library/main/Source/MyUILib(Unamed).lua"))();
+local Window = Library:Create("DEVLUA | PLAYER MODIFY | V1.0")
+
+local ToggleGui = Instance.new("ScreenGui")
+local Toggle = Instance.new("TextButton")
+
+ToggleGui.Name = "ToggleGui_HE"
+ToggleGui.Parent = game.CoreGui
+
+Toggle.Name = "Toggle"
+Toggle.Parent = ToggleGui
+Toggle.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+Toggle.BackgroundTransparency = 0.660
+Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
+Toggle.Size = UDim2.new(0.0650164187, 0, 0.0888099447, 0)
+Toggle.Font = Enum.Font.SourceSans
+Toggle.Text = "Toggle"
+Toggle.TextScaled = true
+Toggle.TextColor3 = Color3.fromRGB(40, 40, 40)
+Toggle.TextSize = 24.000
+Toggle.TextXAlignment = Enum.TextXAlignment.Left
+Toggle.Active = true
+Toggle.Draggable = true
+Toggle.MouseButton1Click:connect(function()
+    Library:ToggleUI()
+end)
+
+local VisualTab = Window:Tab("Visuals","rbxassetid://12308581351")
+local HomeTab = Window:Tab("Home","rbxassetid://10888331510")
+
+VisualTab:Section("MODE SECTION")
+
+VisualTab:Toggle("Car Mode (R15 & R6)", function(state)
+game.StarterGui:SetCore("SendNotification", {
+Title = "PLAYER MODIFY";
+Text = "BY DEVLUA";
+Icon = "";
+Duration = 5;
+})
+ local hi = Instance.new("Sound")
+hi.Name = "Sound"
+hi.SoundId = "http://www.roblox.com/asset/?id=5095315287"
+hi.Volume = 2
+hi.Looped = true
+hi.archivable = false
+hi.Parent = game.Workspace
+
+
+hi:Play()
+
+local speaker = game.Players.LocalPlayer
+local anims = speaker.Character.Animate
+local sit = anims.sit:FindFirstChildOfClass("Animation").AnimationId
+anims.idle:FindFirstChildOfClass("Animation").AnimationId = sit
+anims.walk:FindFirstChildOfClass("Animation").AnimationId = sit
+anims.run:FindFirstChildOfClass("Animation").AnimationId = sit
+anims.jump:FindFirstChildOfClass("Animation").AnimationId = sit
+
+speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = 3
+speaker.Character:FindFirstChildOfClass('Humanoid').WalkSpeed = 64
+end)
+
+VisualTab:Toggle("Speed Mode", function(state)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+end)
+
+VisualTab:Toggle("HitBox Mode", function(state)
+_G.HeadSize = 40
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really red")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+end)
+
+VisualTab:Toggle("Ragdoll Mode", function(state)
+local function init()
+local plr = game.Players.LocalPlayer
+local char = plr.Character
+local m = plr:GetMouse()
+
+plr.Character = nil
+plr.Character = char
+
+wait(game.Players.RespawnTime + .6)
+
+local sound = Instance.new("Sound",workspace)
+sound.SoundId = "rbxassetid://7604108360"
+sound.Volume = 2
+
+char.Humanoid.Died:Connect(function()
+    sound:Play()
+    spawn(function()
+        wait(.75)
+        local con
+        con = m.Button1Down:Connect(function()
+            plr.Character = nil
+            plr.Character = char
+            con:Disconnect()
+            wait(game.Players.RespawnTime + .4)
+            sound:Destroy()
+            init()
+        end)
+    end)
+    function Iterate(instance, func)
+        for i, v in next, instance:GetChildren() do
+            func(v)
+        end
+    end
+   
+    limbs = {
+        ["Right Leg"] = true;
+        ["Right Arm"] = true;
+        ["Left Leg"] = true;
+        ["Left Arm"] = true;
+    }
+   
+    Iterate(char, function(v)
+        if v:IsA("BasePart") then
+            local attachment = Instance.new("Attachment")
+            attachment.Parent = v
+            attachment.Name = (v.Name .. "[Attachment]")
+            if limbs[v.Name] then
+                attachment.Position = Vector3.new(0, v.Size.Y/2, 0)
+            elseif v.Name == "Head" then
+                attachment.Position = Vector3.new(0, -v.Size.Y/2, 0)
+                attachment.Rotation = Vector3.new(0, 0, -90)
+            end
+        end
+    end)
+   
+    local leftLegAttachment = Instance.new("Attachment")
+    leftLegAttachment.Position = Vector3.new(-.5, -1, 0)
+    leftLegAttachment.Rotation = Vector3.new(0, -90, 0)
+   
+    local rightLegAttachment = Instance.new("Attachment")
+    rightLegAttachment.Position = Vector3.new(.5, -1, 0)
+    rightLegAttachment.Rotation = Vector3.new(0, -90, 0)
+    rightLegAttachment.Parent, leftLegAttachment.Parent = char.Torso, char.Torso
+   
+    jointAttachments = {
+        ['Head'] = {
+        ['Attachment0'] = char.Torso['NeckAttachment'];
+        ['Attachment1'] = char.Head['Head[Attachment]'];
+        };
+        ['Left Arm'] = {
+        ['Attachment0'] = char.Torso['LeftCollarAttachment'];
+        ['Attachment1'] = char['Left Arm']['Left Arm[Attachment]'];
+        };
+        ['Right Arm'] = {
+        ['Attachment0'] = char.Torso['RightCollarAttachment'];
+        ['Attachment1'] = char['Right Arm']['Right Arm[Attachment]'];
+        };
+        ['Left Leg'] = {
+        ['Attachment0'] = leftLegAttachment;
+        ['Attachment1'] = char['Left Leg']['Left Leg[Attachment]'];
+        };
+        ['Right Leg'] = {
+        ['Attachment0'] = rightLegAttachment;
+        ['Attachment1'] = char['Right Leg']['Right Leg[Attachment]'];
+        };
+    }
+   
+    char.Humanoid.PlatformStand = true
+   
+    Iterate(char, function(v)
+        if v:IsA("BasePart") then
+            if jointAttachments[v.Name] then
+                local ballSocketJoint = Instance.new("BallSocketConstraint")
+                ballSocketJoint.Parent = v
+                ballSocketJoint.Radius = 0.15
+                ballSocketJoint.Attachment0, ballSocketJoint.Attachment1 = jointAttachments[v.Name]['Attachment0'], jointAttachments[v.Name]['Attachment1']
+            end
+        end
+    end)
+   
+    Iterate(char.Torso, function(v)
+        if v:IsA("Motor") then
+            v:Remove()
+        end
+    end)
+    local tool = char:FindFirstChildOfClass("Tool")
+    if tool then
+        tool.Parent = plr.Backpack
+        task.wait()
+        tool.Parent = char
+    end
+end)
+end
+
+init()
+wait(2.9)
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+
+VisualTab:Toggle("Netless Mode", function(state)
+    -- when you reset make sure to re-execute this or just make this execute in a loop
+for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+    if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
+    game:GetService("RunService").Heartbeat:connect(function()
+    v.Velocity = Vector3.new(-30,0,0)
+    end)
+    end
+    end
+    
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = "Notification";
+        Text = "Netless Ran";
+        Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+    Duration = 16;
+end)
+
+HomeTab:Section("PLAYER SECTION")
+
+HomeTab:Toggle("Fov 5", function(state)
+workspace.CurrentCamera.FieldOfView = 5
+end)
+
+HomeTab:Toggle("Fov 10", function(state)
+workspace.CurrentCamera.FieldOfView = 10
+end)
+
+HomeTab:Toggle("Fov 20", function(state)
+workspace.CurrentCamera.FieldOfView = 20
+end)
+
+HomeTab:Toggle("Fov 30", function(state)
+workspace.CurrentCamera.FieldOfView = 30
+end)
+
+HomeTab:Toggle("Fov 40", function(state)
+workspace.CurrentCamera.FieldOfView = 40
+end)
+
+HomeTab:Toggle("Fov 50", function(state)
+workspace.CurrentCamera.FieldOfView = 50
+end)
+
+HomeTab:Toggle("Fov 60", function(state)
+workspace.CurrentCamera.FieldOfView = 60
+end)
+
+HomeTab:Toggle("Fov 70 (Normal)", function(state)
+workspace.CurrentCamera.FieldOfView = 70
+end)
+
+HomeTab:Toggle("Fov 80", function(state)
+workspace.CurrentCamera.FieldOfView = 80
+end)
+
+HomeTab:Toggle("Fov 90", function(state)
+workspace.CurrentCamera.FieldOfView = 90
+end)
+
+HomeTab:Toggle("Fov 100", function(state)
+workspace.CurrentCamera.FieldOfView = 100
+end)
+
+HomeTab:Button("Rejoin", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+
+HomeTab:Toggle("Noclip", function(s)
+    getgenv().Noclip = s
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if Noclip == true then
+            game:GetService("RunService").Stepped:wait()
+            game.Players.LocalPlayer.Character.Head.CanCollide = false
+            game.Players.LocalPlayer.Character.Torso.CanCollide = false
+        end
+    end)
+end)
+
+HomeTab:Toggle("Infinite Jump", function(s)
+getgenv().InfJ = s
+    game:GetService("UserInputService").JumpRequest:connect(function()
+        if InfJ == true then
+            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+        end
+    end)
+end)
+
+HomeTab:Toggle("Character Highlight", function(state)
+getgenv().enabled = state --Toggle on/off
+getgenv().filluseteamcolor = true --Toggle fill color using player team color on/off
+getgenv().outlineuseteamcolor = true --Toggle outline color using player team color on/off
+getgenv().fillcolor = Color3.new(0, 0, 0) --Change fill color, no need to edit if using team color
+getgenv().outlinecolor = Color3.new(1, 1, 1) --Change outline color, no need to edit if using team color
+getgenv().filltrans = 0.5 --Change fill transparency
+getgenv().outlinetrans = 0.5 --Change outline transparency
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/RobloxScripts/main/Highlight-ESP.lua"))()
+end)
+
+HomeTab:Toggle("ESP (NAME)", function(state)
+    getgenv().ESPName = state
+end)
+
+HomeTab:Toggle("ESP (SKELETON)", function(state)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TheNuggetEater05/ekaMiffutSmodnaR/main/GlobalR6SkeletonESP.lua"))()
+
+shared.BoneESP_Settings = {
+    Circle_Visible = false,
+    Circle_Radius = 3,
+    BoneESP_Color = Color3.fromRGB(255,0,0)
+}
+end)
+
+HomeTab:Toggle("RTX SHADER", function(state)
+local a = game.Lighting
+a.Ambient = Color3.fromRGB(33, 33, 33)
+a.Brightness = 5.69
+a.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+a.ColorShift_Top = Color3.fromRGB(255, 247, 237)
+a.EnvironmentDiffuseScale = 0.105
+a.EnvironmentSpecularScale = 0.522
+a.GlobalShadows = true
+a.OutdoorAmbient = Color3.fromRGB(51, 54, 67)
+a.ShadowSoftness = 0.18
+a.GeographicLatitude = -15.525
+a.ExposureCompensation = 0.75
+b.Enabled = true
+b.Intensity = 0.99
+b.Size = 9999 
+b.Threshold = 0
+local c = Instance.new("ColorCorrectionEffect", a)
+c.Brightness = 0.015
+c.Contrast = 0.25
+c.Enabled = true
+c.Saturation = 0.2
+c.TintColor = Color3.fromRGB(217, 145, 57)
+if getgenv().mode == "Summer" then
+   c.TintColor = Color3.fromRGB(255, 220, 148)
+elseif getgenv().mode == "Autumn" then
+   c.TintColor = Color3.fromRGB(217, 145, 57)
+else
+   warn("No mode selected!")
+   print("Please select a mode")
+   b:Destroy()
+   c:Destroy()
+end
+local d = Instance.new("DepthOfFieldEffect", a)
+d.Enabled = true
+d.FarIntensity = 0.077
+d.FocusDistance = 21.54
+d.InFocusRadius = 20.77
+d.NearIntensity = 0.277
+local e = Instance.new("ColorCorrectionEffect", a)
+e.Brightness = 0
+e.Contrast = -0.07
+e.Saturation = 0
+e.Enabled = true
+e.TintColor = Color3.fromRGB(255, 247, 239)
+local e2 = Instance.new("ColorCorrectionEffect", a)
+e2.Brightness = 0.2
+e2.Contrast = 0.45
+e2.Saturation = -0.1
+e2.Enabled = true
+e2.TintColor = Color3.fromRGB(255, 255, 255)
+local s = Instance.new("SunRaysEffect", a)
+s.Enabled = true
+s.Intensity = 0.01
+s.Spread = 0.146
+
+print("RTX Graphics loaded! Created by DEVLUA")
+end)
+
+local c = workspace.CurrentCamera
+local ps = game:GetService("Players")
+local lp = ps.LocalPlayer
+local rs = game:GetService("RunService")
+
+local function esp(p,cr)
+	local h = cr:WaitForChild("Humanoid")
+	local hrp = cr:WaitForChild("Head")
+
+	local text = Drawing.new("Text")
+	text.Visible = false
+	text.Center = true
+	text.Outline = false 
+	text.Font = 3
+	text.Size = 16.16
+	text.Color = Color3.new(170,170,170)
+
+	local conection
+	local conection2
+	local conection3
+
+	local function dc()
+		text.Visible = false
+		text:Remove()
+		if conection then
+			conection:Disconnect()
+			conection = nil 
+		end
+		if conection2 then
+			conection2:Disconnect()
+			conection2 = nil 
+		end
+		if conection3 then
+			conection3:Disconnect()
+			conection3 = nil 
+		end
+	end
+
+	conection2 = cr.AncestryChanged:Connect(function(_,parent)
+		if not parent then
+			dc()
+		end
+	end)
+
+	conection3 = h.HealthChanged:Connect(function(v)
+		if (v<=0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
+			dc()
+		end
+	end)
+
+	conection = rs.RenderStepped:Connect(function()
+		local hrp_pos,hrp_onscreen = c:WorldToViewportPoint(hrp.Position)
+		if hrp_onscreen and ESPName == true then
+			text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y - 27)
+			text.Text = p.DisplayName.." (@"..p.Name..")"
+			text.Visible = true
+		else
+			text.Visible = false
+		end
+	end)
+end
+
+local function p_added(p)
+	if p.Character then
+		esp(p,p.Character)
+	end
+	p.CharacterAdded:Connect(function(cr)
+		esp(p,cr)
+	end)
+end
+
+for i,p in next, ps:GetPlayers() do 
+	if p ~= lp then
+		p_added(p)
+	end
+end
+
+ps.PlayerAdded:Connect(p_added)
