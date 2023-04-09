@@ -193,6 +193,7 @@ local function QUYNCZE_fake_script()
 	subbtn.MouseButton1Click:Connect(function()
 		if passbox.Text == password then
 			subbtn.Text = "CORRECT KEY!"
+			
 			wait(1)
 			frame:TweenPosition(UDim2.new(1,0,0,0),"Out","Linear")
 			script.Parent.Parent.Parent.Frame.Visible = false
