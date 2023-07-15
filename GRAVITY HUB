@@ -1,0 +1,80 @@
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+
+local Window = Library.CreateLib("GRAVITY HUB | V1", "Ocean", "Lua")
+
+local PlrTab = Window:NewTab("HOME")
+local PlrSection = PlrTab:NewSection("Welcome, " .. game.Players.LocalPlayer.DisplayName)
+local PlrSection = PlrTab:NewSection("ALL PLANET HAD THERE OWN GRAVITATIONAL")
+
+local PlrTab = Window:NewTab("MENU")
+local PlrSection = PlrTab:NewSection("PLANET GRAVITY")
+
+PlrSection:NewButton("MOON", "MOON GRAVITY", function()
+Workspace.Gravity = 50
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 5
+print("MOON GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("EARTH", "EARTH GRAVITY", function()
+Workspace.Gravity = 150
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 15
+print("EARTH GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("SUN", "SUN GRAVITY", function()
+Workspace.Gravity = 1000
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 1
+print("SUN GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("MERCURY", "MERCURY GRAVITY", function()
+Workspace.Gravity = 130
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 8
+print("MERCURY GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("VENUS", "VENUS GRAVITY", function()
+Workspace.Gravity = 155
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed =16
+print("VENUS GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("MARS", "MARS GRAVITY", function()
+Workspace.Gravity = 140
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed =17
+print("MARS GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("JUPITER", "JUPITER GRAVITY", function()
+Workspace.Gravity = 430
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 7
+print("JUPITER GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("SATURN", "SATURN GRAVITY", function()
+Workspace.Gravity = 160
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 4
+print("SATURN GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("URANUS", "URANUS GRAVITY", function()
+Workspace.Gravity = 155
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 9
+print("URANUS GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("NEPTUNE", "NEPTUNE GRAVITY", function()
+Workspace.Gravity = 163
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 5
+print("NEPTUNE GRAVITY ACTIVATE")
+end)
+
+PlrSection:NewButton("PLUTO", "PLUTO GRAVITY", function()
+Workspace.Gravity = 25
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 11
+print("PLUTO GRAVITY ACTIVATE")
+end)
+
+local PlrTab = Window:NewTab("CREATOR")
+local PlrSection = PlrTab:NewSection(" DEVBLOXY ")
+local PlrSection = PlrTab:NewSection(" THANKS FOR USING THIS SCRIPT ")
